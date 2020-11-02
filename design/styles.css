@@ -1,94 +1,107 @@
+/*CSS*/
 body {
-  background-color: #FAEACD;
-}
-
-.header {
-  font-family: 'Staatliches', cursive;
-  font-weight: bold;
-  background-color: #279AAD;
-  color: #F5F2F0;
-  margin-top: -15px;
-  margin-left: -15px;
-  margin-right: -15px;
-  margin-bottom: 15px;
-  padding: 15px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
+  background: #eee;
 }
 
 .wrapper {
   display: flex;
-  justify-content: center;
   flex-direction: column;
 }
 
 .container {
-  font-family: 'Architects Daughter', cursive;
+  min-height: 100%;
+}
+
+.header {
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.flex-outer li,
+.flex-inner {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flex-outer > li > label,
+.flex-outer li p {
+  flex: 1 0 125px;
+  max-width: 225px;
+  padding: 8px;
+}
+
+.flex-outer > li > label + *,
+.flex-inner {
+  flex: 1 0 225px;
+}
+
+.flex-outer button {
+  background-color: #3895a8;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  border-radius: 3px;
+  display: block;
+  margin: 0 auto;
+}
+
+.flex-inner li {
+  width: 100%;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-inner input {
+  margin-right: 15px;
+}
+
+.flex-inner {
+  padding: 0 8px;
   justify-content: space-between;
 }
 
-.content {
-  display: flex;
-  max-width: 960px;
-  margin-right: 15px;
-  flex: 0 1 auto;
+.flex-outer {
+  width: 960px;
+  padding: 0 16px;
+  margin:0 auto;
 }
 
-.left-side {
+/* New for Lab 7 */
+h1 {
+  margin: 20px 50px;
+  padding: 0 20px;
+  min-height: 75px;
+  background-color: #3895a8;
+  color: white;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
 
-.body-img {
-  display: flex;
-  border: 1px solid black;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-transform: capitalize;
+  flex-wrap: nowrap;
   border-radius: 4px;
-  max-width: 199px;
 }
 
-.caption {
-  display: flex;
-  background-color: #A4D7DB;
-  padding: 15px
-}
-
-.right-side {
-  background-color: #A4D7DB;
-  align-self: flex-end;
-  padding: 15px;
-}
-
-.sublist1, .sublist2, .sublist3 {
-  font-family: 'Yellowtail', cursive;
-  font-weight: normal;
-}
-
-@media screen and (max-width: 1000px) {
-  .container {
-    justify-content: center;
-  }
-
-  .content {
-    flex: 1 0 auto;
-    margin-right: 0px;
-    flex-direction: row;
-  }
-
-  .left-side {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .caption {
-    align-self: center;
-    justify-content: center;
-  }
-
+#chartContainer {
+    background: gray;
+    border: 2px dotted black;
+    border-radius: 4px;
+    height: 500px;
+    width: 100%;
+    margin-bottom: 15px;
 }
