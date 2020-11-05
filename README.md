@@ -1,6 +1,6 @@
 # INST377-Assign2-Gr32
 
-1. Using the Fetch api, grab the [https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json] Food Safety Data Set from Prince George's County
+1. Using the Fetch api, grab the [https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json]Food Safety Data Set from Prince George's County
 2. Decide what you're going to be filtering for: Type of restaurant? Zip code?
 3. CSS Teammate: Lay out your page so it is fully responsive, and looks good on smartphones as well as desktops above 1600px wide.
 4. Put you and your collaborator's names in the header
