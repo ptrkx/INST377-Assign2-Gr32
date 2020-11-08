@@ -1,38 +1,23 @@
-//My Section
-function range(int) {
-  const arr = [];
-  for (let i = 0; i < int; i += 1) {
-    arr.push(i);
-  }
-  return arr;
-}
-
-function randomIntInc(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-//End My Section
-
 function convertRestaurantsToCategories(restaurantList) {
   // process your restaurants here!
-  //probably reduce function, convert restaurants to categories
-  console.log("convertRestaurantsToCategories");
-  const reshape = restaurantList.reduce((collection, item, i) => {
-    const category = collection.find((f) => f.label === item.category);
-    if (!category) {
-      collection.push({
-        label: item.category,
-        y: 1
-      });
-    } else {
-      category.y += 1;
+  const categoryArray = [];
+  const result = {};
+  for (let i = 0; i < restaurantList.length; i += 1) {
+    categoryArray.push(restaurantList[i].category);
+
+  }
+  for (let i = 0; i < categoryArray.length; i += 1) {
+    if (!result[categoryArray[i]]) {
+      result[categoryArray[i]] = 0;
     }
-    return collection;
-  }, []);
-
-  console.table(reshape);
-
-  return reshape;
+    result[categoryArray[i]] += 1;
+  }
+  const reply = Object.keys(result).map((category) => ({
+    y: result[category],
+    label: category
+  }));
+  console.log('reply', reply);
+  return reply;
 }
 
 function makeYourOptionsObject(datapointsFromRestaurantsList) {
@@ -42,9 +27,7 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
     // add an array of colors here https://canvasjs.com/docs/charts/chart-options/colorset/
     "#2F4F4F",
     "#008080",
-    "#2E8B57",
-    "#3CB371",
-    "#90EE90"
+    "#2E8B57"
   ]);
 
   return {
@@ -67,19 +50,19 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
           type: "zigzag",
           startValue: 40,
           endValue: 50,
-          color: "blue"
+          color: "red"
         },
         {
           type: "zigzag",
           startValue: 85,
           endValue: 100,
-          color: "blue"
+          color: "red"
         },
         {
           type: "zigzag",
           startValue: 140,
           endValue: 175,
-          color: "blue"
+          color: "red"
         }
 
       ]} // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
@@ -93,38 +76,25 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
   };
 }
 
+
 function runThisWithResultsFromServer(jsonFromServer) {
   console.log('jsonFromServer', jsonFromServer);
   sessionStorage.setItem('restaurantList', JSON.stringify(jsonFromServer)); // don't mess with this, we need it to provide unit testing support
   // Process your restaurants list
   // Make a configuration object for your chart
   // Instantiate your chart
-  if (document.querySelector(".created-element")) {//remove prev
-    document.querySelector(".created-element").remove();
-  }
-
-  const newArr = range(10);
-  const objList = newArr.map((i) => {
-    const number = randomIntInc(0, jsonFromServer.length);
-    return jsonFromServer[number];
-  });
-  console.table(objList);
   const reorganizedData = convertRestaurantsToCategories(jsonFromServer);
   const options = makeYourOptionsObject(reorganizedData);
+  
   const chart = new CanvasJS.Chart('chartContainer', options);
-  chart.render();
 
-  const newH = document.createElement("h1");
-  $("form").append(newH);
-  newH.className = "created-element";
-  $(newH).append("Restaurant Categories: " + reorganizedData.length);
+  chart.render();
 }
 
 // Leave lines 52-67 alone; do your work in the functions above
 document.body.addEventListener('submit', async (e) => {
   e.preventDefault(); // this stops whatever the browser wanted to do itself.
   const form = $(e.target).serializeArray();
-  console.log("eventListener");
   fetch('/api', {
     method: 'POST',
     headers: {
@@ -134,7 +104,6 @@ document.body.addEventListener('submit', async (e) => {
   })
     .then((fromServer) => fromServer.json())
     .then((jsonFromServer) => runThisWithResultsFromServer(jsonFromServer))
-
     .catch((err) => {
       console.log(err);
     });
