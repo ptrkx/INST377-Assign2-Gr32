@@ -110,6 +110,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 
 }
 .cases{
@@ -118,3 +119,4 @@ h1 {
   flex-direction: column;
   justify-content: center;
 }
+
