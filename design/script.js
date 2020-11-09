@@ -13,7 +13,7 @@ function findMatching(wordsToMatch, cities){
     if(wordsToMatch === '') {
       return null;
     }
-    return place.city.match(matches) || place.state.match(matches) || place.name.match(matches);
+    return place.category.match(matches);
   });
 }
 
@@ -23,7 +23,7 @@ function displayMatches() {
     return `
       <li>
         <span class = "name">${place.name}</span>
-        <span class = "location">${place.city}, ${place.state}, ${place.zipcode}</span>
+        <span class = "location">${place.city}, ${place.state}, ${place.zip}</span>
         <span class = "category">${place.category}</span>
       </li>
     `;
